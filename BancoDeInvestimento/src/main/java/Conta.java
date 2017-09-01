@@ -9,6 +9,14 @@
  * @author aluno
  */
 public class Conta {
+    public Conta (){}
+    private float saldo;
+
+    /**
+     *
+     */
+    protected float limite;
+    private int agencia, numero;
 
     /**
      * @return the numero
@@ -63,10 +71,18 @@ public class Conta {
     public void setLimite(float limite) {
         this.limite = limite;
     }
-    private int numero;
-    private int agencia;
-    private float saldo;
-    private float limite;
+    public float depositar (float valor){
+        this.saldo= this.saldo + valor ;
+        return this.saldo;
+    }
+    public boolean sacar(float valor){
+        if (this.saldo + this.limite >= valor){
+            this.saldo = this.saldo - valor;
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     
 }

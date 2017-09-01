@@ -9,36 +9,41 @@
  * @author aluno
  */
 public class ContaMaster extends Conta {
+    public ContaMaster () {
+        super ();
+    }
+    private float limiteExtra, saldoInvestimento;
 
     /**
-     * @return the SaldoInvestimento
+     *
+     * @param valor
+     * @return
      */
-    public float getSaldoInvestimento() {
-        return SaldoInvestimento;
+    @Override
+    public boolean sacar (float valor){
+        if (this.getSaldo()+ this.limite + this.limiteExtra >= valor){
+            super.sacar(valor);
+            return true;
+        } else {
+            return false;
+        }
     }
-
-    /**
-     * @param SaldoInvestimento the SaldoInvestimento to set
-     */
-    public void setSaldoInvestimento(float SaldoInvestimento) {
-        this.SaldoInvestimento = SaldoInvestimento;
+    public void setlimiteExtra (float limite){
+        this.limiteExtra = limite;
+        
     }
-
-    /**
-     * @return the LimiteExtra
-     */
-    public float getLimiteExtra() {
-        return LimiteExtra;
+    @Override
+    public float getLimite(){
+        return this.limite + this.limiteExtra;
     }
-
-    /**
-     * @param LimiteExtra the LimiteExtra to set
-     */
-    public void setLimiteExtra(float LimiteExtra) {
-        this.LimiteExtra = LimiteExtra;
-    }
-    private float SaldoInvestimento;
-    private float LimiteExtra;
-    
+    public boolean investir (float valor){
+        if (this.getSaldo() >= valor ){
+            super.sacar (valor);
+            this.saldoInvestimento = this.saldoInvestimento + valor;
+            return true;
+        } else {
+            return false;
+        }
     
 }
+}  
